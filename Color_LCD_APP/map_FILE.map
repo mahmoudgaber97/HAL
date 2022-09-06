@@ -1,0 +1,214 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+MSTKCallBack1       0x4               systick_Programming.o
+SPICallBack         0x4               SPI_Program.o
+MSTKCallBack2       0x4               systick_Programming.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x08000000         0x00010000         xr
+RAM              0x20000000         0x00005000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+
+.text           0x08000000     0xb274
+ *(.vector*)
+ .vector        0x08000000       0x4c startup.o
+ *(.text*)
+ .text          0x0800004c      0xa34 GPIO_V3_PROG.o
+                0x0800004c                SETPORT_Void
+                0x08000098                PORTvoidCONFIGRATION
+                0x080000f4                SETPINvalue
+                0x0800081c                PINCONFIGvoid
+                0x08000968                GETu8PIN
+                0x080009d8                MGPIO_u16GetPortValue
+ .text          0x08000a80       0x78 main.o
+                0x08000a80                main
+ .text          0x08000af8      0x348 RCCV2_Program.o
+                0x08000af8                RCC_void_HSIdrive
+                0x08000b58                RCC_void_HSEDRIVER
+                0x08000bb8                RCC_void_ENABLEIntilazation
+                0x08000c28                RCC_PLLvoidConfigration
+                0x08000d3c                RCC_EN_Prepheral
+                0x08000dbc                RCC_DISA_Prepheral
+ .text          0x08000e40      0x194 SPI_Program.o
+                0x08000e40                MSPI_voidIntiConfig
+                0x08000f30                MSPI_VoidSendReceiveSyncro
+                0x08000f80                MSPI_VoidSendReceive_ASyncro
+                0x08000fb4                SPI1_IRQHandler
+ .text          0x08000fd4      0x134 systick_Programming.o
+                0x08000fd4                MSTK_voidInit
+                0x08000ffc                MSTK_VoidBasyWait
+                0x0800103c                MSTK_voidSetInterrvalSignal
+                0x08001078                SysTick_Handler
+                0x0800108c                MSTK_voidSTOP
+                0x080010a8                MSTK_voidElapsed
+                0x080010c4                MSTK_voidRemaining
+                0x080010e8                MSTK_voidGetFlag
+ .text          0x08001108      0x164 TFT_LCD_Program.o
+                0x08001108                TFT_LCD_Inti
+                0x080011dc                TFT_LCD_ShowPhoto
+ .text          0x0800126c        0x8 startup.o
+ *(.rodata*)
+ .rodata        0x08001274     0xa000 main.o
+                0x08001274                image
+
+.glue_7         0x0800b274        0x0
+ .glue_7        0x0800b274        0x0 linker stubs
+
+.glue_7t        0x0800b274        0x0
+ .glue_7t       0x0800b274        0x0 linker stubs
+
+.vfp11_veneer   0x0800b274        0x0
+ .vfp11_veneer  0x0800b274        0x0 linker stubs
+
+.v4_bx          0x0800b274        0x0
+ .v4_bx         0x0800b274        0x0 linker stubs
+
+.iplt           0x0800b274        0x0
+ .iplt          0x0800b274        0x0 GPIO_V3_PROG.o
+
+.rel.dyn        0x0800b274        0x0
+ .rel.iplt      0x0800b274        0x0 GPIO_V3_PROG.o
+
+.data           0x0800b274        0x0
+ *(.data*)
+ .data          0x0800b274        0x0 GPIO_V3_PROG.o
+ .data          0x0800b274        0x0 main.o
+ .data          0x0800b274        0x0 RCCV2_Program.o
+ .data          0x0800b274        0x0 SPI_Program.o
+ .data          0x0800b274        0x0 systick_Programming.o
+ .data          0x0800b274        0x0 TFT_LCD_Program.o
+ .data          0x0800b274        0x0 startup.o
+
+.igot.plt       0x0800b274        0x0
+ .igot.plt      0x0800b274        0x0 GPIO_V3_PROG.o
+
+.bss            0x20000000        0xc
+ *(.bss*)
+ .bss           0x20000000        0x0 GPIO_V3_PROG.o
+ .bss           0x20000000        0x0 main.o
+ .bss           0x20000000        0x0 RCCV2_Program.o
+ .bss           0x20000000        0x0 SPI_Program.o
+ .bss           0x20000000        0x0 systick_Programming.o
+ .bss           0x20000000        0x0 TFT_LCD_Program.o
+ .bss           0x20000000        0x0 startup.o
+ COMMON         0x20000000        0x4 SPI_Program.o
+                0x20000000                SPICallBack
+ COMMON         0x20000004        0x8 systick_Programming.o
+                0x20000004                MSTKCallBack1
+                0x20000008                MSTKCallBack2
+LOAD GPIO_V3_PROG.o
+LOAD main.o
+LOAD RCCV2_Program.o
+LOAD SPI_Program.o
+LOAD systick_Programming.o
+LOAD TFT_LCD_Program.o
+LOAD startup.o
+OUTPUT(FILE.elf elf32-littlearm)
+
+.debug_info     0x00000000      0xa9d
+ .debug_info    0x00000000      0x299 GPIO_V3_PROG.o
+ .debug_info    0x00000299       0xcb main.o
+ .debug_info    0x00000364      0x1b9 RCCV2_Program.o
+ .debug_info    0x0000051d      0x1e1 SPI_Program.o
+ .debug_info    0x000006fe      0x229 systick_Programming.o
+ .debug_info    0x00000927      0x150 TFT_LCD_Program.o
+ .debug_info    0x00000a77       0x26 startup.o
+
+.debug_abbrev   0x00000000      0x4bf
+ .debug_abbrev  0x00000000      0x100 GPIO_V3_PROG.o
+ .debug_abbrev  0x00000100       0x79 main.o
+ .debug_abbrev  0x00000179       0x6d RCCV2_Program.o
+ .debug_abbrev  0x000001e6       0xee SPI_Program.o
+ .debug_abbrev  0x000002d4      0x133 systick_Programming.o
+ .debug_abbrev  0x00000407       0xa4 TFT_LCD_Program.o
+ .debug_abbrev  0x000004ab       0x14 startup.o
+
+.debug_loc      0x00000000      0x928
+ .debug_loc     0x00000000      0x228 GPIO_V3_PROG.o
+ .debug_loc     0x00000228       0x2c main.o
+ .debug_loc     0x00000254      0x228 RCCV2_Program.o
+ .debug_loc     0x0000047c      0x110 SPI_Program.o
+ .debug_loc     0x0000058c      0x280 systick_Programming.o
+ .debug_loc     0x0000080c      0x11c TFT_LCD_Program.o
+
+.debug_aranges  0x00000000       0xe0
+ .debug_aranges
+                0x00000000       0x20 GPIO_V3_PROG.o
+ .debug_aranges
+                0x00000020       0x20 main.o
+ .debug_aranges
+                0x00000040       0x20 RCCV2_Program.o
+ .debug_aranges
+                0x00000060       0x20 SPI_Program.o
+ .debug_aranges
+                0x00000080       0x20 systick_Programming.o
+ .debug_aranges
+                0x000000a0       0x20 TFT_LCD_Program.o
+ .debug_aranges
+                0x000000c0       0x20 startup.o
+
+.debug_line     0x00000000      0x554
+ .debug_line    0x00000000      0x26f GPIO_V3_PROG.o
+ .debug_line    0x0000026f       0x5e main.o
+ .debug_line    0x000002cd       0xad RCCV2_Program.o
+ .debug_line    0x0000037a       0x8a SPI_Program.o
+ .debug_line    0x00000404       0x8d systick_Programming.o
+ .debug_line    0x00000491       0x88 TFT_LCD_Program.o
+ .debug_line    0x00000519       0x3b startup.o
+
+.debug_str      0x00000000      0x593
+ .debug_str     0x00000000      0x1de GPIO_V3_PROG.o
+                                0x205 (size before relaxing)
+ .debug_str     0x000001de       0x12 main.o
+                                0x138 (size before relaxing)
+ .debug_str     0x000001f0       0xff RCCV2_Program.o
+                                0x21e (size before relaxing)
+ .debug_str     0x000002ef       0xe8 SPI_Program.o
+                                0x201 (size before relaxing)
+ .debug_str     0x000003d7      0x127 systick_Programming.o
+                                0x240 (size before relaxing)
+ .debug_str     0x000004fe       0x7c TFT_LCD_Program.o
+                                0x195 (size before relaxing)
+ .debug_str     0x0000057a       0x19 startup.o
+                                 0x43 (size before relaxing)
+
+.comment        0x00000000       0x7e
+ .comment       0x00000000       0x7e GPIO_V3_PROG.o
+                                 0x7f (size before relaxing)
+ .comment       0x0000007e       0x7f main.o
+ .comment       0x0000007e       0x7f RCCV2_Program.o
+ .comment       0x0000007e       0x7f SPI_Program.o
+ .comment       0x0000007e       0x7f systick_Programming.o
+ .comment       0x0000007e       0x7f TFT_LCD_Program.o
+
+.ARM.attributes
+                0x00000000       0x31
+ .ARM.attributes
+                0x00000000       0x33 GPIO_V3_PROG.o
+ .ARM.attributes
+                0x00000033       0x33 main.o
+ .ARM.attributes
+                0x00000066       0x33 RCCV2_Program.o
+ .ARM.attributes
+                0x00000099       0x33 SPI_Program.o
+ .ARM.attributes
+                0x000000cc       0x33 systick_Programming.o
+ .ARM.attributes
+                0x000000ff       0x33 TFT_LCD_Program.o
+ .ARM.attributes
+                0x00000132       0x21 startup.o
+
+.debug_frame    0x00000000      0x490
+ .debug_frame   0x00000000      0x100 GPIO_V3_PROG.o
+ .debug_frame   0x00000100       0x2c main.o
+ .debug_frame   0x0000012c      0x104 RCCV2_Program.o
+ .debug_frame   0x00000230       0x94 SPI_Program.o
+ .debug_frame   0x000002c4      0x134 systick_Programming.o
+ .debug_frame   0x000003f8       0x98 TFT_LCD_Program.o
